@@ -19,8 +19,5 @@ const styles = StyleSheet.create({
     backgroundColor: '#445',
     alignItems: 'center',
     justifyContent: 'center'
-  },
-  title: {
-    color: '#ccc'
   }
 })
