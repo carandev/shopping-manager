@@ -14,4 +14,6 @@ const CustomInput = ({ label, password, ...props }) => {
   )
 }
 
+// TODO: styles
+
 export default CustomInput
