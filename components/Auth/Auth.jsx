@@ -1,5 +1,7 @@
-import { Button, Dimensions, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
+
+import CustomInput from '../CustomInput'
 
 const Auth = () => {
   const [emailInput, setEmailInput] = useState('')
@@ -16,17 +18,14 @@ const Auth = () => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Login</Text>
-      <TextInput
+      <CustomInput
         placeholder="carlos@mail.com"
-        placeholderTextColor='#999'
-        style={styles.input}
         value={emailInput}
         onChangeText={setEmailInput}
       />
-      <TextInput
+      <CustomInput
+        password
         placeholder="ldjsfhjkf87364&5"
-        placeholderTextColor='#999'
-        style={styles.input}
         value={passwordInput}
         onChangeText={setPasswordInput}
       />
