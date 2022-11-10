@@ -1,16 +1,21 @@
 import { initializeApp } from 'firebase/app'
 import { getAuth } from 'firebase/auth'
-import * as dotenv from 'dotenv'
-
-dotenv.config()
+import {
+  FIREBASE_API_KEY,
+  FIREBASE_AUTH_DOMAIN,
+  FIREBASE_PROJECT_ID,
+  FIREBASE_STORAGE_BUCKET,
+  FIREBASE_MESSAGING_SENDER_ID,
+  FIREBASE_APP_ID
+} from '@env'
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_API_KEY,
-  authDomain: 'shopping-manager-993f5.firebaseapp.com',
-  projectId: 'shopping-manager-993f5',
-  storageBucket: 'shopping-manager-993f5.appspot.com',
-  messagingSenderId: '951192813355',
-  appId: '1:951192813355:web:2c9fe001290f2a914fcf6e'
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+  appId: FIREBASE_APP_ID
 }
 
 const app = initializeApp(firebaseConfig)
