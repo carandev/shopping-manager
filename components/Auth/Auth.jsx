@@ -1,18 +1,31 @@
-import { Button, Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Alert, Button, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
 import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
+import { createUserEmail, signInEmail } from '../../firebase/auth'
 
 const Auth = () => {
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
 
-  const handleSignIn = () => {
-    console.log(emailInput, passwordInput)
+  const handleSignIn = async () => {
+    const { user, error } = await signInEmail(emailInput, passwordInput)
+
+    if (error) {
+      Alert.alert('Problema al iniciar sesión', error.code)
+    } else {
+      console.log(user.email)
+    }
   }
 
-  const handleRegister = () => {
-    console.log(emailInput, passwordInput)
+  const handleRegister = async () => {
+    const { user, error } = await createUserEmail(emailInput, passwordInput)
+
+    if (error) {
+      Alert.alert('Problema al crear el usuario', error.code)
+    } else {
+      console.log(user.email)
+    }
   }
 
   return (
