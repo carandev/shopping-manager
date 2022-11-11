@@ -1,4 +1,4 @@
-import { Alert, Button, Dimensions, StyleSheet, Text, TouchableHighlight, View } from 'react-native'
+import { Alert, Button, Dimensions, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
