@@ -1,5 +1,4 @@
-import { async } from '@firebase/util'
-import { createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, signInWithEmailAndPassword, signInWithRedirect } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithRedirect } from 'firebase/auth'
 
 import { auth } from './index'
 

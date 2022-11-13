@@ -1,30 +1,26 @@
-import { Alert, Button, Dimensions, StyleSheet, Text, View } from 'react-native'
+import { Alert, Button, StyleSheet, Text, View } from 'react-native'
 import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
 import { createUserEmail, signInEmail } from '../../firebase/auth'
 
-const Auth = () => {
+const Auth = ({ navigation }) => {
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
 
   const handleSignIn = async () => {
-    const { user, error } = await signInEmail(emailInput, passwordInput)
+    const { error } = await signInEmail(emailInput, passwordInput)
 
     if (error) {
       Alert.alert('Problema al iniciar sesión', error.code)
-    } else {
-      console.log(user.email)
     }
   }
 
   const handleRegister = async () => {
-    const { user, error } = await createUserEmail(emailInput, passwordInput)
+    const { error } = await createUserEmail(emailInput, passwordInput)
 
     if (error) {
       Alert.alert('Problema al crear el usuario', error.code)
-    } else {
-      console.log(user.email)
     }
   }
 
@@ -60,7 +56,8 @@ export default Auth
 
 const styles = StyleSheet.create({
   container: {
-    width: Dimensions.get('screen').width,
+    flex: 1,
+    justifyContent: 'center',
     padding: 20
   },
   title: {
