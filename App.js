@@ -4,10 +4,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { onAuthStateChanged } from 'firebase/auth'
 import { ActivityIndicator, View } from 'react-native'
 
-import Auth from './components/Auth/Auth'
+
 import Home from './pages/Home'
 import AuthContextProvider, { authContext } from './context/AuthContext'
 import { auth } from './firebase'
+import Auth from './components/Welcome/Auth'
 
 const Stack = createNativeStackNavigator()
 

@@ -1,12 +1,15 @@
-import { Alert, Button, StyleSheet, Text, View } from 'react-native'
+import { Alert, Button, StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
 import { createUserEmail, signInEmail } from '../../firebase/auth'
+import loginHeader from '../../assets/login.png'
+import CustomButton from '../CustomButton'
 
-const Auth = ({ navigation }) => {
+const Auth = () => {
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSignIn = async () => {
     const { error } = await signInEmail(emailInput, passwordInput)
@@ -17,34 +20,51 @@ const Auth = ({ navigation }) => {
   }
 
   const handleRegister = async () => {
+    setLoading(true)
     const { error } = await createUserEmail(emailInput, passwordInput)
+
+    setLoading(false)
 
     if (error) {
       Alert.alert('Problema al crear el usuario', error.code)
     }
   }
 
+  if (loading) {
+    return (
+      <View>
+        <ActivityIndicator/>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Image
+        source={loginHeader}
+        style={styles.img}
+      />
+      <Text style={styles.title}>Iniciar Sesión o Crear Cuenta</Text>
       <CustomInput
-        placeholder="carlos@mail.com"
+        label='Correo'
+        placeholder="Tu correo"
         value={emailInput}
         onChangeText={setEmailInput}
       />
       <CustomInput
         password
-        placeholder="ldjsfhjkf87364&5"
+        label='Contraseña'
+        placeholder="Contraseña"
         value={passwordInput}
         onChangeText={setPasswordInput}
       />
       <View style={styles.buttonContainer}>
-        <Button
-          title='Iniciar Sesión'
+        <CustomButton
+          text='Iniciar Sesión'
           onPress={handleSignIn}
         />
-        <Button
-          title='Crear cuenta'
+        <CustomButton
+          text='Crear Cuenta'
           onPress={handleRegister}
         />
       </View>
@@ -57,23 +77,23 @@ export default Auth
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 20
+    padding: 20,
+    backgroundColor: '#222228'
+  },
+  img: {
+    width: 350,
+    height: 250,
+    alignSelf: 'center',
+    marginBottom: 10
   },
   title: {
-    fontSize: 40,
-    textAlign: 'center',
-    color: '#ccc'
-  },
-  input: {
-    margin: 10,
-    padding: 5,
-    borderWidth: 1,
-    borderColor: '#aff',
-    color: '#ccc'
+    fontSize: 20,
+    color: '#fff',
+    marginBottom: 10
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    marginTop: 20
   }
 })
