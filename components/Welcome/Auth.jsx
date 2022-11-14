@@ -1,10 +1,11 @@
-import { Alert, Button, StyleSheet, Text, View, Image, ActivityIndicator } from 'react-native'
+import { Alert, StyleSheet, Text, View, ActivityIndicator } from 'react-native'
 import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
 import { createUserEmail, signInEmail } from '../../firebase/auth'
-import loginHeader from '../../assets/login.png'
 import CustomButton from '../CustomButton'
+import colors from '../../colors'
+import LoginSvg from '../LoginSvg'
 
 const Auth = () => {
   const [emailInput, setEmailInput] = useState('')
@@ -40,11 +41,10 @@ const Auth = () => {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={loginHeader}
+      <LoginSvg
         style={styles.img}
       />
-      <Text style={styles.title}>Iniciar Sesión o Crear Cuenta</Text>
+      <Text style={styles.title}>Iniciar sesión o Crea una cuenta</Text>
       <CustomInput
         label='Correo'
         placeholder="Tu correo"
@@ -78,18 +78,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: '#222228'
+    backgroundColor: colors.darkBlue
   },
   img: {
-    width: 350,
-    height: 250,
     alignSelf: 'center',
-    marginBottom: 10
+    margin: 30
   },
   title: {
     fontSize: 20,
-    color: '#fff',
-    marginBottom: 10
+    color: colors.white,
+    marginBottom: 30
   },
   buttonContainer: {
     flexDirection: 'row',
