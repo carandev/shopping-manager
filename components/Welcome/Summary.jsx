@@ -32,7 +32,7 @@ const Summary = ({ navigation }) => {
           <AntDesign color='black' name='phone' size={40} />
         </A>
       </View>
-      <CustomButton text='Iniciar Sesión' onPress={handleNext} />
+      <CustomButton text='Iniciar' onPress={handleNext} />
     </View>
   )
 }
