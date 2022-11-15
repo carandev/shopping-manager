@@ -22,7 +22,7 @@ const Entry = ({ navigation }) => {
         style={styles.text}
       >
         Expande tu empresa vendiendo online,
-        que tus clientes vean todos tus productos con un solo click
+        que tus clientes vean todos tus productos en cualquier lugar
       </Text>
       <View style={{ width: Dimensions.get('screen').width, paddingHorizontal: 20 }}>
         <CustomButton text='Empecemos' onPress={handleGetStarted} />
