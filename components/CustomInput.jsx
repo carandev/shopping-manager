@@ -1,7 +1,14 @@
-import { View, Text, TextInput, StyleSheet } from 'react-native'
-import React from 'react'
+import { View, Text, TextInput, StyleSheet, TouchableWithoutFeedback } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons'
+import React, { useState } from 'react'
 
 const CustomInput = ({ label, password, ...props }) => {
+  const [showPassword, setShowPassword] = useState(password)
+
+  const handlePassword = () => {
+    setShowPassword(lastValue => !lastValue)
+  }
+
   return (
     <View>
       <Text
@@ -9,12 +16,24 @@ const CustomInput = ({ label, password, ...props }) => {
       >
         {label}
       </Text>
-      <TextInput
-        style={styles.input}
-        {...props}
-        placeholderTextColor='#999'
-        secureTextEntry={password}
-      />
+      <View style={styles.passwordContainer}>
+        <TextInput
+          style={styles.input}
+          {...props}
+          placeholderTextColor='#999'
+          secureTextEntry={showPassword}
+        />
+        {
+          password &&
+            <TouchableWithoutFeedback onPress={handlePassword}>
+              {
+              showPassword
+                ? <FontAwesome color='white' name='eye-slash' size={20} style={styles.icon} />
+                : <FontAwesome color='white' name='eye' size={20} style={styles.icon} />
+              }
+            </TouchableWithoutFeedback>
+        }
+      </View>
     </View>
   )
 }
@@ -31,7 +50,17 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     marginVertical: 10,
     borderColor: '#ccc',
-    color: '#eee'
+    color: '#eee',
+    width: '100%'
+  },
+  passwordContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
+  icon: {
+    position: 'absolute',
+    right: 10,
+    top: 15
   }
 })
 
