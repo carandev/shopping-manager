@@ -1,12 +1,18 @@
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
-const CustomButton = ({ text, onPress, children }) => {
+const CustomButton = ({ text, onPress, children, small }) => {
+  let styleContainer = { ...styles.container, ...styles.containerNormal }
+
+  if (small) {
+    styleContainer = { ...styles.container, ...styles.containerSmall }
+  }
+
   return (
     <TouchableWithoutFeedback
       onPress={onPress}
     >
-      <View style={styles.container}>
+      <View style={styleContainer}>
         <Text
           style={styles.text}
         >
@@ -23,10 +29,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#111',
+    backgroundColor: '#111'
+  },
+  containerNormal: {
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 20
+  },
+  containerSmall: {
+    paddingVertical: 5,
+    paddingHorizontal: 20,
+    borderRadius: 10
   },
   text: {
     color: '#eee',
