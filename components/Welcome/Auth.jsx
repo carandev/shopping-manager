@@ -1,4 +1,4 @@
-import { Alert, StyleSheet, Text, View, ActivityIndicator } from 'react-native'
+import { Alert, StyleSheet, Text, View, ActivityIndicator, TouchableWithoutFeedback } from 'react-native'
 import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
@@ -7,7 +7,7 @@ import CustomButton from '../CustomButton'
 import colors from '../../colors'
 import LoginSvg from '../LoginSvg'
 
-const Auth = () => {
+const Auth = ({ navigation }) => {
   const [emailInput, setEmailInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [loading, setLoading] = useState(false)
@@ -29,6 +29,10 @@ const Auth = () => {
     if (error) {
       Alert.alert('Problema al crear el usuario', error.code)
     }
+  }
+
+  const handlePasswordReset = () => {
+    navigation.navigate('PasswordReset')
   }
 
   if (loading) {
@@ -58,6 +62,9 @@ const Auth = () => {
         value={passwordInput}
         onChangeText={setPasswordInput}
       />
+      <TouchableWithoutFeedback onPress={handlePasswordReset}>
+        <Text style={styles.passwordReset}>¿Olvidaste tu contraseña?</Text>
+      </TouchableWithoutFeedback>
       <View style={styles.buttonContainer}>
         <CustomButton
           text='Iniciar Sesión'
@@ -88,6 +95,11 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: colors.white,
     marginBottom: 30
+  },
+  passwordReset: {
+    color: colors.white,
+    alignSelf: 'flex-end',
+    marginVertical: 10
   },
   buttonContainer: {
     flexDirection: 'row',
