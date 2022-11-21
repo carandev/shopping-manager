@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   containerNormal: {
     paddingVertical: 15,
-    paddingHorizontal: 30,
+    paddingHorizontal: 50,
     borderRadius: 20
   },
   containerSmall: {
