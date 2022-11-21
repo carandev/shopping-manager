@@ -1,21 +1,24 @@
 import { View, Text, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 
 import CustomInput from '../CustomInput'
 import colors from '../../colors'
 import CustomButton from '../CustomButton'
 import ResetPasswordSvg from '../ResetPasswordSvg'
+import { passwordReset } from '../../firebase/auth'
 
 const PasswordReset = () => {
-  const handlePasswordReset = () => {
+  const [email, setEmail] = useState('')
 
+  const handlePasswordReset = () => {
+    passwordReset(email)
   }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>¿Olvidaste tu contraseña?</Text>
       <ResetPasswordSvg />
-      <CustomInput label='Ingresa tu dirección de correo electrónico' />
+      <CustomInput label='Ingresa tu dirección de correo electrónico' onChangeText={setEmail} />
       <CustomButton text='Enviar' onPress={handlePasswordReset} />
     </View>
   )

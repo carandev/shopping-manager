@@ -1,4 +1,5 @@
-import { createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithRedirect } from 'firebase/auth'
+import { createUserWithEmailAndPassword, getRedirectResult, GoogleAuthProvider, onAuthStateChanged, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithRedirect } from 'firebase/auth'
+import { Alert } from 'react-native'
 
 import { auth } from './index'
 
@@ -19,5 +20,15 @@ export const signInEmail = async (email, password) => {
     return { user }
   } catch (error) {
     return { error }
+  }
+}
+
+export const passwordReset = async email => {
+  try {
+    await sendPasswordResetEmail(auth, email)
+
+    Alert.alert('Correo enviado')
+  } catch (error) {
+    Alert.alert(error.message)
   }
 }
