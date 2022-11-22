@@ -1,11 +1,13 @@
 import { View, StyleSheet, Text, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
-const CustomButton = ({ text, onPress, children, small }) => {
+const CustomButton = ({ text, onPress, children, small, large }) => {
   let styleContainer = { ...styles.container, ...styles.containerNormal }
 
   if (small) {
     styleContainer = { ...styles.container, ...styles.containerSmall }
+  } else if (large) {
+    styleContainer = { ...styles.container, ...styles.containerLarge }
   }
 
   return (
@@ -32,8 +34,13 @@ const styles = StyleSheet.create({
     backgroundColor: '#111'
   },
   containerNormal: {
+    paddingVertical: 10,
+    paddingHorizontal: 35,
+    borderRadius: 15
+  },
+  containerLarge: {
     paddingVertical: 15,
-    paddingHorizontal: 50,
+    paddingHorizontal: 40,
     borderRadius: 20
   },
   containerSmall: {

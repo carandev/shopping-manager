@@ -85,6 +85,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    alignItems: 'center',
     backgroundColor: colors.darkBlue
   },
   img: {
@@ -94,6 +95,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     color: colors.white,
+    width: '100%',
     marginBottom: 30
   },
   passwordReset: {
@@ -103,7 +105,8 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    marginTop: 20
+    width: '100%',
+    marginTop: 20,
+    justifyContent: 'space-between'
   }
 })
