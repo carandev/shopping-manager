@@ -1,13 +1,20 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
 import colors from '../../colors'
 
 const ShopCard = ({ shop }) => {
   return (
-    <View style={styles.container}>
-      <Text>{shop.name}</Text>
-    </View>
+    <TouchableWithoutFeedback>
+      <View
+        style={styles.container}
+      >
+        <Image
+          source={{ uri: shop.logo }}
+          style={styles.img}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   )
 }
 
@@ -15,11 +22,15 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginVertical: 5,
+    margin: 5,
     backgroundColor: colors.white,
-    width: 120,
-    height: 120,
-    borderRadius: 20
+    borderRadius: 20,
+    padding: 10
+  },
+  img: {
+    width: 100,
+    height: 100,
+    resizeMode: 'contain'
   }
 })
 
