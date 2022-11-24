@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     alignItems: 'center',
+    paddingVertical: 20,
     width: '100%'
   },
   welcomeContainer: {
