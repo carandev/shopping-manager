@@ -1,4 +1,4 @@
-import { View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
+import { Text, View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
 
 import colors from '../../colors'
@@ -13,6 +13,11 @@ const ShopCard = ({ shop }) => {
           source={{ uri: shop.logo }}
           style={styles.img}
         />
+        <Text
+          style={styles.name}
+        >
+          {shop.name}
+        </Text>
       </View>
     </TouchableWithoutFeedback>
   )
@@ -20,17 +25,28 @@ const ShopCard = ({ shop }) => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     margin: 5,
     backgroundColor: colors.white,
-    borderRadius: 20,
-    padding: 10
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    width: 150,
+    height: 150
   },
   img: {
-    width: 100,
-    height: 100,
+    width: 70,
+    height: 70,
+    margin: 10,
     resizeMode: 'contain'
+  },
+  name: {
+    backgroundColor: colors.black,
+    color: colors.white,
+    width: '100%',
+    borderBottomEndRadius: 10,
+    textAlign: 'center',
+    padding: 20
   }
 })
 
