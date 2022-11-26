@@ -1,11 +1,17 @@
 import { Text, View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native'
 
 import colors from '../../colors'
 
 const ShopCard = ({ shop }) => {
+  const navigation = useNavigation()
+  const goShop = () => {
+    navigation.navigate('Products', { name: shop.name })
+  }
+
   return (
-    <TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={goShop}>
       <View
         style={styles.container}
       >
