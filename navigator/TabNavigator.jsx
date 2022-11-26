@@ -6,6 +6,7 @@ import { User, Settings, Shop } from '../screens'
 import colors from '../colors'
 
 import HomeStack from './HomeStack'
+import ShopStack from './ShopStack'
 
 const Tab = createBottomTabNavigator()
 
@@ -30,7 +31,7 @@ const TabNavigator = () => {
       })}
     >
       <Tab.Screen component={HomeStack} name='HomeStack'/>
-      <Tab.Screen component={Shop} name='Shop'/>
+      <Tab.Screen component={ShopStack} name='Shop'/>
       <Tab.Screen component={User} name='User'/>
       <Tab.Screen component={Settings} name='Settings'/>
     </Tab.Navigator>
