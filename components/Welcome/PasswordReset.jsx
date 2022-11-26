@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import CustomInput from '../CustomInput'
 import colors from '../../colors'
 import CustomButton from '../CustomButton'
-import ResetPasswordSvg from '../ResetPasswordSvg'
+import { ResetPasswordSvg } from '../svg/'
 import { passwordReset } from '../../firebase/auth'
 
 const PasswordReset = () => {

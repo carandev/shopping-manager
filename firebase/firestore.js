@@ -2,7 +2,7 @@ import { addDoc, collection, getDocs } from 'firebase/firestore'
 
 import { db } from '.'
 
-export const writeData = async (shop) => {
+export const createShop = async (shop) => {
   try {
     const docRef = await addDoc(collection(db, 'shops'), shop)
 
@@ -12,7 +12,7 @@ export const writeData = async (shop) => {
   }
 }
 
-export const readData = async (setShops) => {
+export const readShops = async (setShops) => {
   const querySnapshot = await getDocs(collection(db, 'shops'))
   const newShops = []
 
@@ -21,4 +21,16 @@ export const readData = async (setShops) => {
   })
 
   setShops(newShops)
+}
+
+export const readShop = async (user, setShop) => {
+  const querySnapshot = await getDocs(collection(db, 'shops'))
+
+  querySnapshot.forEach(doc => {
+    if (doc.data().user === user) {
+      setShop({ id: doc.id, ...doc.data() })
+    } else {
+      setShop(null)
+    }
+  })
 }

@@ -1,10 +1,7 @@
 import React from 'react'
 
 import { Stack } from '../App'
-import Auth from '../components/Welcome/Auth'
-import Entry from '../components/Welcome/Entry'
-import PasswordReset from '../components/Welcome/PasswordReset'
-import Summary from '../components/Welcome/Summary'
+import { Auth, Entry, PasswordReset, Summary } from '../components/Welcome'
 
 const WelcomeStack = () => {
   return (

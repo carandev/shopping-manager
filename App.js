@@ -3,22 +3,13 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { onAuthStateChanged } from 'firebase/auth'
 import { ActivityIndicator, View } from 'react-native'
-
-import Home from './pages/Home'
-import AuthContextProvider, { authContext } from './context/AuthContext'
-import { auth } from './firebase'
-import WelcomeStack from './stacks/WelcomeStack'
 import { StatusBar } from 'expo-status-bar'
 
-export const Stack = createNativeStackNavigator()
+import AuthContextProvider, { authContext } from './context/AuthContext'
+import { auth } from './firebase'
+import { WelcomeStack, TabNavigator } from './navigator'
 
-const HomeStack = () => {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen component={Home} name="Home" />
-    </Stack.Navigator>
-  )
-}
+export const Stack = createNativeStackNavigator()
 
 const RootNavigation = () => {
   const { user, setUser } = useContext(authContext)
@@ -44,7 +35,7 @@ const RootNavigation = () => {
   return (
     <NavigationContainer>
       <StatusBar style='light' />
-      {user ? <HomeStack/> : <WelcomeStack />}
+      {user ? <TabNavigator/> : <WelcomeStack />}
     </NavigationContainer>
   )
 }

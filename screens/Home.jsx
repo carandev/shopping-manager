@@ -2,31 +2,43 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import React, { useEffect, useState } from 'react'
 
 import colors from '../colors'
-import { readData } from '../firebase/firestore'
-import ShopCard from '../components/Home/ShopCard'
-import CustomButton from '../components/CustomButton'
-import WelcomeSvg from '../components/WelcomeSvg'
+import { readShops } from '../firebase/firestore'
+import { CustomButton, ShopCard, WelcomeSvg } from '../components'
+import { auth } from '../firebase'
 
-const Home = () => {
+const Home = ({ navigation }) => {
   const [shops, setShops] = useState([])
+  const [showWelcome, setShowWelcome] = useState(true)
 
   useEffect(() => {
-    readData(setShops)
-  }, [])
+    readShops(setShops)
+    const userShop = shops.find(shop => shop.user === auth.currentUser.uid)
+
+    if (userShop) {
+      setShowWelcome(false)
+    }
+  }, [shops, setShops])
+
+  const goToCreateShop = () => {
+    navigation.navigate('CreateShop')
+  }
 
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tiendas</Text>
-      <View style={styles.welcomeContainer}>
+      {
+        showWelcome &&
+        <View style={styles.welcomeContainer}>
         <WelcomeSvg />
         <View style={styles.welcomeMessageContain}>
           <Text style={styles.welcomeMessageText}>
             Bienvenido, estas son los negocios que puedes visitar para conocer
             todos los productos que ofrecen.
           </Text>
-          <CustomButton small text='Añadir tienda' />
+          <CustomButton small text='Añadir mi tienda' onPress={goToCreateShop} />
         </View>
       </View>
+      }
       <ScrollView
         contentContainerStyle={styles.shopsContainer}
       >
@@ -63,6 +75,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     alignItems: 'center',
+    paddingVertical: 20,
     width: '100%'
   },
   welcomeContainer: {

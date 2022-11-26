@@ -5,7 +5,7 @@ import CustomInput from '../CustomInput'
 import { createUserEmail, signInEmail } from '../../firebase/auth'
 import CustomButton from '../CustomButton'
 import colors from '../../colors'
-import LoginSvg from '../LoginSvg'
+import { LoginSvg } from '../svg'
 
 const Auth = ({ navigation }) => {
   const [emailInput, setEmailInput] = useState('')
