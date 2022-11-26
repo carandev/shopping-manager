@@ -5,11 +5,9 @@ import { onAuthStateChanged } from 'firebase/auth'
 import { ActivityIndicator, View } from 'react-native'
 import { StatusBar } from 'expo-status-bar'
 
-import Home from './pages/Home'
 import AuthContextProvider, { authContext } from './context/AuthContext'
 import { auth } from './firebase'
-import WelcomeStack from './navigator/WelcomeStack'
-import TabNavigator from './navigator/TabNavigator'
+import { WelcomeStack, TabNavigator } from './navigator'
 
 export const Stack = createNativeStackNavigator()
 

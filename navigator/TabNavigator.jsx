@@ -2,9 +2,7 @@ import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
 
-import Home from '../pages/Home'
-import User from '../pages/User'
-import Settings from '../pages/Settings'
+import { Home, User, Settings } from '../screens'
 import colors from '../colors'
 
 const Tab = createBottomTabNavigator()

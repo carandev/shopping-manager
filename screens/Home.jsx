@@ -3,9 +3,7 @@ import React, { useEffect, useState } from 'react'
 
 import colors from '../colors'
 import { readData } from '../firebase/firestore'
-import ShopCard from '../components/Home/ShopCard'
-import CustomButton from '../components/CustomButton'
-import WelcomeSvg from '../components/WelcomeSvg'
+import { CustomButton, ShopCard, WelcomeSvg } from '../components'
 
 const Home = () => {
   const [shops, setShops] = useState([])

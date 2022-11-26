@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
 
 import colors from '../../colors'
-import EntrySvg from '../EntrySvg'
+import { EntrySvg } from '../svg'
 import CustomButton from '../CustomButton'
 
 const Entry = ({ navigation }) => {
