@@ -4,8 +4,9 @@ import React from 'react'
 import { CustomButton } from '../components'
 import { auth } from '../firebase'
 
-const User = () => {
+const User = ({ navigation }) => {
   const handleSignOut = () => {
+    navigation.navigate('Login')
     auth.signOut()
   }
 
