@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { AntDesign } from '@expo/vector-icons'
 
 import { User, Cart } from '../screens'
 import colors from '../colors'
+import CartContext from '../context/CartContext'
 
 import HomeStack from './HomeStack'
 import ShopStack from './ShopStack'
@@ -11,6 +12,8 @@ import ShopStack from './ShopStack'
 const Tab = createBottomTabNavigator()
 
 const TabNavigator = () => {
+  const { cart } = useContext(CartContext)
+
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
@@ -33,7 +36,7 @@ const TabNavigator = () => {
       <Tab.Screen component={HomeStack} name='HomeStack'/>
       <Tab.Screen component={ShopStack} name='Shop'/>
       <Tab.Screen component={User} name='User'/>
-      <Tab.Screen component={Cart} name='Cart'/>
+      <Tab.Screen component={Cart} name='Cart' options={{ tabBarBadge: cart.length }}/>
     </Tab.Navigator>
   )
 }

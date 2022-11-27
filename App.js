@@ -8,6 +8,7 @@ import { StatusBar } from 'expo-status-bar'
 import AuthContextProvider, { authContext } from './context/AuthContext'
 import { auth } from './firebase'
 import { WelcomeStack, TabNavigator } from './navigator'
+import { CartProvider } from './context/CartContext'
 
 export const Stack = createNativeStackNavigator()
 
@@ -34,8 +35,10 @@ const RootNavigation = () => {
 
   return (
     <NavigationContainer>
-      <StatusBar style='light' />
-      {user ? <TabNavigator/> : <WelcomeStack />}
+      <CartProvider>
+        <StatusBar style='light' />
+        {user ? <TabNavigator/> : <WelcomeStack />}
+      </CartProvider>
     </NavigationContainer>
   )
 }
