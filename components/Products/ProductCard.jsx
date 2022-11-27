@@ -4,10 +4,10 @@ import { useNavigation } from '@react-navigation/native'
 
 import colors from '../../colors'
 
-const ShopCard = ({ shop }) => {
+const ProductCard = ({ product }) => {
   const navigation = useNavigation()
   const goShop = () => {
-    navigation.navigate('Products', { shop })
+    navigation.navigate('ProductDetail', { product })
   }
 
   return (
@@ -16,13 +16,13 @@ const ShopCard = ({ shop }) => {
         style={styles.container}
       >
         <Image
-          source={{ uri: shop.logo }}
+          source={{ uri: product.logo }}
           style={styles.img}
         />
         <Text
           style={styles.name}
         >
-          {shop.name}
+          {product.name}
         </Text>
       </View>
     </TouchableWithoutFeedback>
@@ -56,4 +56,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default ShopCard
+export default ProductCard

@@ -11,12 +11,16 @@ const Shop = ({ navigation }) => {
   const [products, setProducts] = React.useState([])
 
   useEffect(() => {
-    readShop(auth.currentUser.uid, setShop)
+    const unsubscribe = navigation.addListener('focus', () => {
+      readShop(auth.currentUser.uid, setShop)
 
-    if (shop) {
-      readProducts(shop.id, setProducts)
-    }
-  }, [shop])
+      if (shop) {
+        readProducts(shop.id, setProducts)
+      }
+
+      return unsubscribe
+    })
+  }, [shop, navigation])
 
   const handleCreateShop = () => {
     navigation.navigate('CreateShop')
