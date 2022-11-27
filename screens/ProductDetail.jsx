@@ -1,11 +1,17 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
-import React from 'react'
+import React, { useContext } from 'react'
 
 import colors from '../colors'
 import { CustomButton } from '../components'
+import CartContext from '../context/CartContext'
 
 const ProductDetail = ({ route }) => {
   const { product } = route.params
+  const { setCart } = useContext(CartContext)
+
+  const handleAddToCart = () => {
+    setCart(lastValue => [...lastValue, { ...product, count: 1 }])
+  }
 
   return (
     <View style={styles.container}>
@@ -13,7 +19,7 @@ const ProductDetail = ({ route }) => {
         <Image source={{ uri: product.logo }} style={styles.img} />
         <Text style={styles.productName}>{product.name}</Text>
       </View>
-      <CustomButton text="Añadir al carrito" />
+      <CustomButton text="Añadir al carrito" onPress={handleAddToCart}/>
     </View>
   )
 }
