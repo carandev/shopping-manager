@@ -12,7 +12,7 @@ export const createShop = async (shop) => {
   }
 }
 
-export const createProducts = async (product) => {
+export const createProduct = async (product) => {
   try {
     await addDoc(collection(db, 'products'), product)
 
@@ -38,7 +38,7 @@ export const readProducts = async (shopId, setProducts) => {
   const newProducts = []
 
   querySnapshot.forEach(doc => {
-    if (doc.data().shopId === shopId) {
+    if (doc.data().shop === shopId) {
       newProducts.push({ id: doc.id, ...doc.data() })
     }
   })

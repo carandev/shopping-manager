@@ -1,12 +1,23 @@
-import { View, Text } from 'react-native'
+import { ScrollView, StyleSheet } from 'react-native'
 import React from 'react'
 
-const ProductsContainer = () => {
+import ProductCard from './ProductCard'
+
+const ProductsContainer = ({ products }) => {
   return (
-    <View>
-      <Text>ProductsContainer</Text>
-    </View>
+    <ScrollView contentContainerStyle={styles.container} >
+      {products.map((product) => <ProductCard key={product.id} product={product} />)}
+    </ScrollView>
   )
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around'
+  }
+})
 
 export default ProductsContainer
