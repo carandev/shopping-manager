@@ -23,14 +23,13 @@ export const createProduct = async (product) => {
 }
 
 export const readShops = async (setShops) => {
-  const querySnapshot = await getDocs(collection(db, 'shops'))
-  const newShops = []
+  try {
+    const shops = await getDocs(collection(db, 'shops'))
 
-  querySnapshot.forEach(doc => {
-    newShops.push({ id: doc.id, ...doc.data() })
-  })
-
-  setShops(newShops)
+    setShops(shops.docs.map((shop) => ({ id: shop.id, ...shop.data() })))
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const readProducts = async (shopId, setProducts) => {
