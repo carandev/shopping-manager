@@ -6,7 +6,6 @@ import { auth } from '../firebase'
 
 const User = ({ navigation }) => {
   const handleSignOut = () => {
-    navigation.navigate('Login')
     auth.signOut()
   }
 
