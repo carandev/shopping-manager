@@ -12,7 +12,7 @@ const Home = ({ navigation }) => {
 
   useEffect(() => {
     readShops(setShops)
-    const userShop = shops.find(shop => shop.user === auth.currentUser.uid)
+    const userShop = shops.find(shop => shop.user === auth.currentUser?.uid)
 
     if (userShop) {
       setShowWelcome(false)
