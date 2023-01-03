@@ -1,4 +1,5 @@
-export * from './HomeStack'
+export { default as HomeStack } from './HomeStack'
+export { default as ShopStack } from './ShopStack'
 export { default as TabNavigator } from './TabNavigator'
-export { default as WelcomeStack } from './WelcomeStack'
 export { default as UserStack } from './UserStack'
+export { default as WelcomeStack } from './WelcomeStack'
