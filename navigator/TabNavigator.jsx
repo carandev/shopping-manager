@@ -5,7 +5,6 @@ import { AntDesign } from '@expo/vector-icons'
 import { Cart } from '../screens'
 import colors from '../colors'
 import CartContext from '../context/CartContext'
-import { auth } from '../firebase'
 
 import HomeStack from './HomeStack'
 import ShopStack from './ShopStack'
@@ -18,7 +17,6 @@ const TabNavigator = () => {
 
   return (
     <Tab.Navigator
-      initialRouteName={auth.currentUser?.displayName ? 'HomeStack' : 'UserStack'}
       screenOptions={({ route }) => ({
         tabBarIcon: () => {
           if (route.name === 'HomeStack') {
@@ -39,7 +37,7 @@ const TabNavigator = () => {
       <Tab.Screen component={HomeStack} name='HomeStack'/>
       <Tab.Screen component={ShopStack} name='ShopStack'/>
       <Tab.Screen component={UserStack} name='UserStack'/>
-      <Tab.Screen component={Cart} name='Cart' options={{ tabBarBadge: cart.length }}/>
+      <Tab.Screen component={Cart} name='Cart' options={cart.length !== 0 && { tabBarBadge: cart.length }}/>
     </Tab.Navigator>
   )
 }

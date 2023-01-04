@@ -17,6 +17,14 @@ const UserStack = ({ navigation }) => {
     return unsubscribe
   }, [navigation])
 
+  React.useEffect(() => {
+    if (!auth.currentUser?.displayName) {
+      navigation.navigate('UpdateUserProfile')
+    } else {
+      navigation.navigate('User')
+    }
+  }, [navigation])
+
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
