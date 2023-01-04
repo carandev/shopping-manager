@@ -4,10 +4,21 @@ import { Stack } from '../App'
 import { UpdateUserProfile, User } from '../screens'
 import { auth } from '../firebase'
 
-const UserStack = () => {
+const UserStack = ({ navigation }) => {
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      if (!auth.currentUser?.displayName) {
+        navigation.navigate('UpdateUserProfile')
+      } else {
+        navigation.navigate('User')
+      }
+    })
+
+    return unsubscribe
+  }, [navigation])
+
   return (
     <Stack.Navigator
-      initialRouteName={auth.currentUser?.displayName ? 'User' : 'UpdateUserProfile'}
       screenOptions={{ headerShown: false }}
     >
         <Stack.Screen component={User} name="User" />
